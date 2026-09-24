@@ -1,64 +1,60 @@
-import { useRouter } from 'expo-router'; // <-- Importação do Expo Router
-import {
-    Image,
-    ImageBackground,
-    StatusBar,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
-} from 'react-native';
+import React from 'react';
+import { View, Text, StyleSheet, Image, StatusBar, TouchableOpacity } from 'react-native';
+import { useRouter } from 'expo-router';
 
-// Assets referenciados com os nomes exatos dos teus ficheiros
+// Usando o nome exato que está na sua pasta (com o erro de digitação original)
 const backgroundUnion = require('../../assets/images/backgorundUnion.png');
-const personagem1 = require('../../assets/images/personagem1.png');
-const discordIcon = require('../../assets/images/logo discord.png');
+const personagem1 = require('../../assets/images/degrade.png');
+const discordIcon = require('../../assets/images/logo-discord.png');
 
-// Cores definidas localmente para manter o teu StyleSheet intacto
 const colors = {
   navy: '#0A1033',
   white: '#FFFFFF',
-  grayLight: '#ABB1CC',
+  graylight: '#ABB1CC',
   red: '#E51C44',
   redDark: '#991F36'
 };
 
 export function LoginScreen() {
-  const router = useRouter(); // <-- Hook de navegação do Expo Router
+  const router = useRouter();
 
   function handleDiscordLogin() {
-    // Fluxo mockado: navega para a rota /home
     router.replace('/home');
   }
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor={colors.navy} translucent />
+      <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
 
-      <ImageBackground
-        source={backgroundUnion}
-        style={styles.backgroundArt}
-        resizeMode="cover"
-      >
-        <Image source={personagem1} style={styles.character} resizeMode="contain" />
-      </ImageBackground>
+      {/* Área das imagens: Container apenas para empilhar as artes */}
+      <View style={styles.imagesContainer}>
+        <Image 
+          source={backgroundUnion} 
+          style={styles.backgroundLines} 
+          resizeMode="cover" 
+        />
+        <Image 
+          source={personagem1} 
+          style={styles.character} 
+          resizeMode="contain" 
+        />
+      </View>
 
+      {/* Textos e Botão */}
       <View style={styles.content}>
         <Text style={styles.title}>
-          Conecte-se{'\n'}e organize suas{'\n'}jogatinas
+          Conecte-se{'\n'}
+          e organize suas{'\n'}
+          jogatinas
         </Text>
 
         <Text style={styles.subtitle}>
-          Crie grupos para jogar seus games favoritos com seus amigos
+          Crie grupos para jogar seus games{'\n'}favoritos com seus amigos
         </Text>
 
-        <TouchableOpacity
-          style={styles.button}
-          activeOpacity={0.85}
-          onPress={handleDiscordLogin} // Chama a função que usa o router.replace
-        >
-          <View style={styles.discordIconWrapper}>
-            <Image source={discordIcon} style={styles.discordIcon} resizeMode="contain" />
+        <TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={handleDiscordLogin}>
+          <View style={styles.iconWrapper}>
+            <Image source={discordIcon} style={styles.icon} resizeMode="contain" />
           </View>
           <Text style={styles.buttonText}>Entrar com Discord</Text>
         </TouchableOpacity>
@@ -70,62 +66,71 @@ export function LoginScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.navy,
+    backgroundColor: colors.navy, // BACKGROUND É SÓ COR AQUI!
   },
-  backgroundArt: {
-    height: '48%',
+  imagesContainer: {
     width: '100%',
-    alignItems: 'center',
+    height: 420,
     justifyContent: 'flex-end',
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  backgroundLines: {
+    position: 'absolute', // Coloca as linhas vermelhas coladas no fundo
+    width: '100%',
+    height: '100%',
   },
   character: {
-    width: '85%',
-    height: '100%',
+    width: '100%',
+    height: 360, // Ajusta o tamanho do lutador
   },
   content: {
     flex: 1,
-    paddingHorizontal: 24,
-    paddingTop: 8,
+    alignItems: 'center',
+    paddingHorizontal: 40,
+    marginTop: -20,
   },
   title: {
     color: colors.white,
-    fontSize: 32,
-    fontWeight: '800',
     textAlign: 'center',
-    lineHeight: 38,
+    fontSize: 32,
+    fontWeight: '900',
+    lineHeight: 40,
+    marginBottom: 16,
   },
   subtitle: {
-    color: colors.grayLight,
-    fontSize: 15,
+    color: colors.graylight,
     textAlign: 'center',
-    marginTop: 16,
-    lineHeight: 21,
+    fontSize: 15,
+    lineHeight: 24,
+    marginBottom: 40,
   },
   button: {
+    width: '100%',
+    height: 56,
+    backgroundColor: colors.red,
+    borderRadius: 8,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.red,
-    borderRadius: 14,
-    marginTop: 32,
-    overflow: 'hidden',
   },
-  discordIconWrapper: {
+  iconWrapper: {
     width: 56,
     height: 56,
-    alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: colors.redDark,
+    alignItems: 'center',
+    borderRightWidth: 1,
+    borderColor: colors.redDark,
   },
-  discordIcon: {
-    width: 26,
-    height: 26,
+  icon: {
+    width: 24,
+    height: 24,
   },
   buttonText: {
     flex: 1,
-    textAlign: 'center',
     color: colors.white,
-    fontSize: 16,
-    fontWeight: '700',
-    marginRight: 56, // compensa o ícone à esquerda pra centralizar o texto
-  },
+    fontSize: 15,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginRight: 56,
+  }
 });

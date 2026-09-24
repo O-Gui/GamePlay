@@ -1,14 +1,14 @@
 import { Feather } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import {
-    FlatList,
-    Image,
-    ImageBackground,
-    StatusBar,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  FlatList,
+  Image,
+  ImageBackground,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 import { colors } from '../theme/colors';
 
@@ -26,13 +26,13 @@ const players = [
     id: '2',
     name: 'Rodrigo Gonçalves',
     status: 'Ocupado',
-    avatar: require('../../assets/images/usuario-rodrigo.png'),
+    avatar: require('../../assets/images/usuario-rodrigo.jpg'), // <-- Fica em .jpg
   },
   {
     id: '3',
     name: 'Diego Fernandes',
     status: 'Ocupado',
-    avatar: require('../../assets/images/usuario-diego.png'),
+    avatar: require('../../assets/images/usuario-diego.png'), // <-- Volta para .png
   },
 ];
 export function ServerDetailsScreen() {
@@ -115,7 +115,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row', 
     alignItems: 'center', 
     justifyContent: 'space-between', 
-    paddingHorizontal: 24, 
+    paddingHorizontal: 24,
+    marginTop: 70, 
     height: 60,
   },
   headerButton: { width: 40, alignItems: 'center', justifyContent: 'center' },
@@ -165,7 +166,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.red, 
     borderRadius: 8, 
     height: 56,
-    overflow: 'hidden'
+    overflow: 'hidden',
+    marginBottom: 50,
   },
   discordIconWrapper: { 
     width: 56, 

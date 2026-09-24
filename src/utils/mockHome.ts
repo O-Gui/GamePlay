@@ -17,12 +17,12 @@ export const mockCategories = [
   {
     id: '2',
     label: 'Duelo 1x1',
-    icon: require('../../assets/images/icon-duelo.png'),
+    icon: require('../../assets/images/duelo.png'),
   },
   {
     id: '3',
     label: 'Diversão',
-    icon: require('../../assets/images/icon-diversão.png'),
+    icon: require('../../assets/images/icone-diversão.png'),
   },
 ];
 
